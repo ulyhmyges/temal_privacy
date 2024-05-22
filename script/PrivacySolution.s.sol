@@ -20,7 +20,6 @@ contract PrivacySolution is Script {
         }
 
         bytes32 value = vm.load(address(privacy), bytes32(uint256(5)));
-        console.logBytes32(value);
 
         privacy.unlock(bytes16(value));
         
