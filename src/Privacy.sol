@@ -2,12 +2,12 @@
 pragma solidity ^0.8.0;
 
 contract Privacy {
-    bool public locked = true;
-    uint256 public ID = block.timestamp;
-    uint8 private flattening = 10;
-    uint8 private denomination = 255;
-    uint16 private awkwardness = uint16(block.timestamp);
-    bytes32[3] private data;
+    bool public locked = true; //1byte
+    uint256 public ID = block.timestamp; //1
+    uint8 private flattening = 10;//2
+    uint8 private denomination = 255;//2
+    uint16 private awkwardness = uint16(block.timestamp);//2
+    bytes32[3] private data;//2
 
     constructor(bytes32[3] memory _data) {
         data = _data;

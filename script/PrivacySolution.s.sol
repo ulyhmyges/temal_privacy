@@ -16,16 +16,18 @@ contract PrivacySolution is Script {
         if (block.chainid == 80002) {
             privacy = Privacy(0x92990fAa291281bE47ffce930135467002bfF80D);
         } else {
-           
             privacy = new Privacy(bb);
         }
 
-        console.logBytes16(bytes16(bb[2]));
-        privacy.unlock(bytes16("Math"));
-        console.log(privacy.locked());
+        bytes32 value = vm.load(address(privacy), bytes32(uint256(5)));
+        console.logBytes32(value);
+
+        privacy.unlock(bytes16(value));
+        
         if(!privacy.locked()){
             console.log("Privacy Solved!");
         }
+      
         vm.stopBroadcast();
     }
 }
