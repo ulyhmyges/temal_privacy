@@ -7,7 +7,7 @@ import "forge-std/console.sol";
 
 contract PrivacySolution is Script {
     Privacy public privacy;
-    bytes32[3] public bb;
+    bytes32[3] public bb = [bytes32("Chinese"), "English", "Math"];
 
     function run() external {
         vm.startBroadcast(vm.envUint("PRIVATE_KEY"));
@@ -18,11 +18,14 @@ contract PrivacySolution is Script {
         } else {
            
             privacy = new Privacy(bb);
-            console.log(bb[2]);
         }
 
+        console.logBytes16(bytes16(bb[2]));
+        privacy.unlock(bytes16("Math"));
         console.log(privacy.locked());
+        if(!privacy.locked()){
+            console.log("Privacy Solved!");
+        }
         vm.stopBroadcast();
-        //console.log("Privacy Solved!");
     }
 }
